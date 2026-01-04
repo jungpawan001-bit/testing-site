@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EliteWear – Fashion Brand</title>
+
+    <style>
+        /* ===== General Style ===== */
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #fff;
+            color: #333;
+        }
+
+        /* ===== Navbar ===== */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background: #111;
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* ===== Hero Section ===== */
+        .hero {
+            height: 90vh;
+            background: url('https://images.unsplash.com/photo-1521335629791-ce4aec67dd47?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-shadow: 0 0 10px black;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 4rem;
+        }
+        .hero button {
+            margin-top: 15px;
+            padding: 12px 25px;
+            background: white;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            border-radius: 3px;
+        }
+
+        /* ===== Products Section ===== */
+        .products {
+            padding: 50px;
+        }
+        .products h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+        .product {
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .product img {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+        .product button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background: black;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* ===== About Section ===== */
+        .about {
+            background: #f4f4f4;
+            padding: 50px;
+            text-align: center;
+        }
+
+        /* ===== Contact Section ===== */
+        .contact {
+            padding: 50px;
+            text-align: center;
+            background: #111;
+            color: white;
+        }
+        .contact input, .contact textarea {
+            width: 70%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+        }
+
+        /* ===== Cart Floating Icon ===== */
+        #cart-icon {
+            position: fixed;
+            right: 25px;
+            bottom: 25px;
+            background: black;
+            color: white;
+            padding: 15px;
+            border-radius: 50%;
+            font-size: 22px;
+            cursor: pointer;
+            z-index: 200;
+        }
+        #cart-count {
+            background: red;
+            padding: 3px 8px;
+            border-radius: 50%;
+            font-size: 14px;
+            position: absolute;
+            top: -10px;
+            right: -10px;
+        }
+
+        /* ===== Cart Panel ===== */
+        #cart-panel {
+            position: fixed;
+            right: -400px;
+            top: 0;
+            width: 350px;
+            height: 100vh;
+            background: white;
+            box-shadow: -2px 0 8px rgba(0,0,0,0.2);
+            padding: 20px;
+            transition: 0.4s;
+            z-index: 250;
+        }
+        #cart-panel.open {
+            right: 0;
+        }
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+        .cart-item button {
+            background: red;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* ===== Payment Modal ===== */
+        #payment-modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6);
+            justify-content: center;
+            align-items: center;
+            z-index: 300;
+        }
+        .payment-box {
+            background: white;
+            padding: 30px;
+            width: 300px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .payment-box input {
+            width: 90%;
+            padding: 8px;
+            margin: 10px 0;
+        }
+        .payment-box button {
+            padding: 10px 20px;
+            background: black;
+            color: white;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        /* ===== Footer ===== */
+        footer {
+            padding: 20px;
+            text-align: center;
+            background: #000;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== NAVBAR ===== -->
+    <nav>
+        <h2>EliteWear</h2>
+        <ul>
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#products">Shop</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- ===== HERO SECTION ===== -->
+    <section class="hero" id="hero">
+        <div>
+            <h1>New Winter Collection</h1>
+            <p>Discover premium fashion built for style & comfort.</p>
+            <button onclick="window.location='#products'">Shop Now</button>
+        </div>
+    </section>
+
+    <!-- ===== PRODUCTS ===== -->
+    <section class="products" id="products">
+        <h2>Featured Products</h2>
+
+        <div class="product-grid">
+
+            <div class="product">
+                <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=600&q=80">
+                <h3>Black Hoodie</h3>
+                <p>$39.99</p>
+                <button class="add-cart" data-name="Black Hoodie" data-price="39.99">Add to Cart</button>
+            </div>
+
+            <div class="product">
+                <img src="https://clothbase.s3.amazonaws.com/uploads/94eb2c3f-a1fd-4671-875c-5c3f0eb33c62/12-04-2016_spellbound_classicdenimjacket_onewash_eh_1.jpg
+                ">
+                <h3>Classic Denim Jacket</h3>
+                <p>$59.99</p>
+                <button class="add-cart" data-name="Denim Jacket" data-price="59.99">Add to Cart</button>
+            </div>
+
+            <div class="product">
+                <img src="https://images.unsplash.com/photo-1528701800489-20be9c2c31a5?auto=format&fit=crop&w=600&q=80">
+                <h3>Beige Trench Coat</h3>
+                <p>$89.99</p>
+                <button class="add-cart" data-name="Trench Coat" data-price="89.99">Add to Cart</button>
+            </div>
+
+            <div class="product">
+                <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=600&q=80">
+                <h3>Streetwear T-Shirt</h3>
+                <p>$24.99</p>
+                <button class="add-cart" data-name="T-Shirt" data-price="24.99">Add to Cart</button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ===== CART FLOATING ICON ===== -->
+    <div id="cart-icon">🛒 <span id="cart-count">0</span></div>
+
+    <!-- ===== CART PANEL (SLIDE IN) ===== -->
+    <div id="cart-panel">
+        <h2>Your Cart</h2>
+        <div id="cart-items"></div>
+        <h3>Total: $<span id="cart-total">0.00</span></h3>
+        <button onclick="openPayment()">Proceed to Payment</button>
+    </div>
+
+    <!-- ===== PAYMENT MODAL ===== -->
+    <div id="payment-modal">
+        <div class="payment-box">
+            <h3>Payment</h3>
+            <input type="text" placeholder="Card Number">
+            <input type="text" placeholder="Expiry Date">
+            <input type="text" placeholder="CVV">
+            <button onclick="alert('Payment Successful!')">Pay Now</button>
+        </div>
+    </div>
+
+    <!-- ===== CONTACT SECTION ===== -->
+    <section class="contact" id="contact">
+        <h2>Contact Us</h2>
+        <input type="text" placeholder="Your Name"><br>
+        <input type="email" placeholder="Your Email"><br>
+        <textarea placeholder="Message" rows="4"></textarea><br>
+        <button>Send</button>
+    </section>
+
+    <!-- ===== Footer ===== -->
+    <footer>
+        © 2025 EliteWear – All Rights Reserved
+    </footer>
+
+<script>
+    let cart = [];
+
+    // Add to Cart Function
+    document.querySelectorAll(".add-cart").forEach(btn => {
+        btn.addEventListener("click", () => {
+            let name = btn.dataset.name;
+            let price = parseFloat(btn.dataset.price);
+
+            cart.push({ name, price });
+
+            updateCart();
+        });
+    });
+
+    function updateCart() {
+        document.getElementById("cart-count").innerText = cart.length;
+
+        let itemsHTML = "";
+        let total = 0;
+
+        cart.forEach((item, index) => {
+            itemsHTML += `
+                <div class="cart-item">
+                    <span>${item.name}</span>
+                    <span>$${item.price}</span>
+                    <button onclick="removeItem(${index})">X</button>
+                </div>
+            `;
+            total += item.price;
+        });
+
+        document.getElementById("cart-items").innerHTML = itemsHTML;
+        document.getElementById("cart-total").innerText = total.toFixed(2);
+    }
+
+    function removeItem(i) {
+        cart.splice(i, 1);
+        updateCart();
+    }
+
+    // Cart Panel Toggle
+    document.getElementById("cart-icon").onclick = () => {
+        document.getElementById("cart-panel").classList.toggle("open");
+    };
+
+    function openPayment() {
+        document.getElementById("payment-modal").style.display = "flex";
+    }
+
+    // Close payment modal on outside click
+    window.onclick = (e) => {
+        if (e.target === document.getElementById("payment-modal")) {
+            document.getElementById("payment-modal").style.display = "none";
+        }
+    };
+</script>
+
+</body>
+</html>
